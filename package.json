@@ -5,7 +5,8 @@
   "main": "dist/caravan.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "tsc",
+    "postinstall": "tsc"
   },
   "bin": {
     "caravan": "dist/caravan.js"
