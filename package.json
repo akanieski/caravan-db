@@ -1,6 +1,6 @@
 {
   "name": "caravan-db",
-  "version": "1.0.0",
+  "version": "0.3.1",
   "description": "Straightforward database migrations",
   "main": "dist/caravan.js",
   "scripts": {
