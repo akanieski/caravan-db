@@ -1,5 +1,8 @@
-import { IMigrator, IMigrationResult, IMigratorOptions } from '../interfaces'
+import { IMigrator, IMigrationResult, IMigratorOptions, Migration } from '../interfaces'
 import * as sql from 'mssql'
+import * as fs from 'fs-extra'
+import {INFO, DEBUG, ERROR} from '../utils'
+import * as path from 'path'
 
 export class MsSqlMigrator implements IMigrator {
 
@@ -8,6 +11,32 @@ export class MsSqlMigrator implements IMigrator {
     constructor(public options: IMigratorOptions) {
         this.options.migrationTableName = this.options.migrationTableName || 'MigrationHistory'
         this.options.migrationSchemaName = this.options.migrationSchemaName || 'dbo'
+    }
+
+    async migrate(): Promise<boolean> {
+        if (!fs.existsSync('./migrations')) {
+            throw new Error('Migrations folder not found!')
+        }
+
+        let appliedMigrationsSql = `select * from [${this.options.migrationSchemaName}].[${this.options.migrationTableName}]`
+        let appliedMigrations = await this.pool.request().query<Migration>(appliedMigrationsSql)
+        let migrationFiles = await fs.readdir('./migrations')
+
+        for (let file of migrationFiles) {
+            let state = 'Already Applied'
+
+            if (appliedMigrations.recordset.filter(m => m.name.toLowerCase() === file.toLowerCase()).length === 0) {
+                // TODO: Transaction protect this!
+                await this.pool.request().query((await fs.readFile(path.join('./migrations',file))).toString())
+                await this.pool.request().query(`insert into [${this.options.migrationSchemaName}].[${this.options.migrationTableName}] (name, migration_date) values ('${file}', getdate())`)
+                state = 'Applied'
+            }
+
+            INFO(`\t> ${file} - ${state}`)
+        }
+
+        INFO(`Migrations Complete`)
+        return true;
     }
 
     async applyMigration(sql: string): Promise<boolean> {

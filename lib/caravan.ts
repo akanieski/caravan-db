@@ -27,22 +27,36 @@ let options: IMigratorOptions = Object.assign({
 (async function() {
 
     try {
-
+        let migrator: IMigrator
+        
         DEBUG('Running caravan with following options:')
         DEBUG(options)    
 
         switch (args.connection.split('://')[0]) {
             case 'mssql':
-                let migrator: IMigrator = new MsSqlMigrator(options)
+            default:
+                migrator = new MsSqlMigrator(options)
                 INFO('MSSQL migrator initialized')
-
-                await migrator.connect(args.connection)
-
             break;
         }
+
+        
+
+        await migrator.connect(args.connection)
+
+        INFO('Checking for migration schema ..')
+        if (! await migrator.checkSchema()) {
+            INFO('Migration schema being created!')
+            await migrator.createSchema()
+        } else {
+            INFO('Migration schema exists!')
+        }
+
+        INFO('Running migrations..')
+        await migrator.migrate()
 
     } catch(err) {
         ERROR(err)
         INFO('Migration failed. See error message for more details.')
     }
-})()
+})().then(() => process.exit()).catch(() => process.exit(1))
