@@ -14,10 +14,10 @@
   "author": "Andrew Kanieski",
   "license": "ISC",
   "devDependencies": {
-    "@types/mssql": "^4.0.6",
-    "typescript": "^2.4.2"
   },
   "dependencies": {
+    "@types/mssql": "^4.0.6",
+    "typescript": "^2.4.2",
     "command-line-args": "^4.0.7",
     "mssql": "^4.0.4"
   }
