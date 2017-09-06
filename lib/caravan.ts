@@ -7,11 +7,26 @@ const optionDefinitions = [
     { name: 'connection', alias: 'c', type: String },
     { name: 'schema', alias: 's', type: String},
     { name: 'table', alias: 't', type: String},
-    { name: 'debug', alias: 'd', type: Boolean}
+    { name: 'debug', alias: 'd', type: Boolean},
+    { name: 'version', alias: 'v', type: Boolean}
 ]
+
 
 let args = processArgs(optionDefinitions)
 global['debug'] = args.debug
+
+if (args.version) {
+    console.log('Caravan DB v' + require('../package').version)
+    process.exit(0)
+}
+
+console.log(` 
+ ,adPPYba, ,adPPYYba, 8b,dPPYba, ,adPPYYba, 8b       d8 ,adPPYYba, 8b,dPPYba,    
+a8"     "" ""     'Y8 88P'   "Y8 ""     'Y8 '8b     d8' ""     'Y8 88P'   '"8a   
+8b         ,adPPPPP88 88         ,adPPPPP88  '8b   d8'  ,adPPPPP88 88       88   
+"8a,   ,aa 88,    ,88 88         88,    ,88   '8b,d8'   88,    ,88 88       88   
+ '"Ybbd8"' '"8bbdP"Y8 88         '"8bbdP"Y8     "8"     '"8bbdP"Y8 88       88  
+`)
 
 import {DEBUG, INFO, ERROR} from './utils'
 

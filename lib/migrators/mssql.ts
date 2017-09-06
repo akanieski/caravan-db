@@ -8,6 +8,7 @@ export class MsSqlMigrator implements IMigrator {
 
     pool: sql.ConnectionPool;
 
+
     constructor(public options: IMigratorOptions) {
         this.options.migrationTableName = this.options.migrationTableName || 'MigrationHistory'
         this.options.migrationSchemaName = this.options.migrationSchemaName || 'dbo'
