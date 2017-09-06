@@ -9,7 +9,7 @@
     "postinstall": "tsc"
   },
   "bin": {
-    "caravan": "./dist/caravan.js"
+    "caravan": "./bin/caravan"
   },
   "author": "Andrew Kanieski",
   "license": "ISC",
