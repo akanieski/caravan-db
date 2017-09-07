@@ -1,5 +1,5 @@
 # Caravan DB
-------------------
+
 Caravan helps you automate and apply database migrations in CI/CD environments. Currently supports MSSQL.
 
 ## Installation
