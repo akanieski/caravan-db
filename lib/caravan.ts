@@ -71,7 +71,7 @@ let options: IMigratorOptions = Object.assign({
 
         
 
-        await migrator.connect(args.connection)
+        await migrator.connect()
 
         INFO('Checking for migration schema ..')
         if (! await migrator.checkSchema()) {

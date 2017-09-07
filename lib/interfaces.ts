@@ -12,6 +12,7 @@ export class Migration {
 export interface IMigratorOptions {
     migrationTableName: string
     migrationSchemaName: string
+    connection: string
 }
 export interface IMigrator {
     applyMigration(sql: string): Promise<boolean>
@@ -22,5 +23,5 @@ export interface IMigrator {
 
     migrate(): Promise<boolean>
     
-    connect(connectionString: string): Promise<boolean>
+    connect(): Promise<boolean>
 }

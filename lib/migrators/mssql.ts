@@ -10,6 +10,7 @@ export class MsSqlMigrator implements IMigrator {
 
 
     constructor(public options: IMigratorOptions) {
+        this.pool = new sql.ConnectionPool(options.connection)
         this.options.migrationTableName = this.options.migrationTableName || 'MigrationHistory'
         this.options.migrationSchemaName = this.options.migrationSchemaName || 'dbo'
     }
@@ -71,8 +72,7 @@ export class MsSqlMigrator implements IMigrator {
         return true
     }
 
-    async connect(connectionString: string): Promise<boolean> {
-        this.pool = new sql.ConnectionPool(connectionString)
+    async connect(): Promise<boolean> {
 
         this.pool = await this.pool.connect()
 
