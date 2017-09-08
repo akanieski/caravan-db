@@ -21,6 +21,7 @@ Options
   -t, --table string        [Optional] Table name for migrations
   -d, --debug               [Optional] Debug Mode
   -v, --version             [Optional] Version Information
+  -f, --migrationsFolder    [Optional] Migrations folder path
   -h, --help                Help
 
 ```
