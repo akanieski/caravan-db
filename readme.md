@@ -1,4 +1,4 @@
-# Caravan DB
+# Caravan DB ![Build & Test Status](https://caravan-db.visualstudio.com/_apis/public/build/definitions/3555b68c-5ff2-4e87-b108-f4356aba4e4a/1/badge)
 
 Caravan helps you automate and apply database migrations in CI/CD environments. Currently supports MSSQL.
 
