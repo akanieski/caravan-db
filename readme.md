@@ -27,8 +27,31 @@ Options
 ```
 
 ## Getting Started
-Create a folder and add SQL files that represent each migration. Then you can simply run caravan with the given connection info and it will apply the given migrations, skipping any that have already been applied.
+Create a `migrations` folder and add SQL files that represent each migration. Then you can simply run caravan with the given connection info and it will apply the given migrations, skipping any that have already been applied. Migrations will be applied in alphanumeric order based on the file name.
 
 ```
-caravan -c mssql://localhost/testdb 
+$ caravan -c mssql://localhost/testdb
+
+
+
+ ,adPPYba, ,adPPYYba, 8b,dPPYba, ,adPPYYba, 8b       d8 ,adPPYYba, 8b,dPPYba,
+a8"     "" ""     'Y8 88P'   "Y8 ""     'Y8 '8b     d8' ""     'Y8 88P'   '"8a
+8b         ,adPPPPP88 88         ,adPPPPP88  '8b   d8'  ,adPPPPP88 88       88
+"8a,   ,aa 88,    ,88 88         88,    ,88   '8b,d8'   88,    ,88 88       88
+ '"Ybbd8"' '"8bbdP"Y8 88         '"8bbdP"Y8     "8"     '"8bbdP"Y8 88       88
+
+[INFO] [11:41:31]   MSSQL migrator initialized
+
+[INFO] [11:41:31]   Checking for migration schema ..
+
+[INFO] [11:41:31]   Migration schema exists!
+
+[INFO] [11:41:31]   Running migrations..
+
+[INFO] [11:41:31]       > 001-do_stuff.sql - Already Applied
+
+[INFO] [11:41:31]       > 002-do_more_stuff.sql - Applied!
+
+[INFO] [11:41:31]   Migrations Complete
 ```
+

@@ -52,7 +52,7 @@ if (!args.connection) {
 let options: IMigratorOptions = Object.assign({
     migrationTableName: 'migrations',
     migrationSchemaName: 'dbo',
-    migrationsFolder: './CustomMigrationsPath'
+    migrationsFolder: './migrations'
 }, args);
 
 (async function() {
