@@ -1,12 +1,13 @@
 {
   "name": "caravan-db",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "description": "Straightforward database migrations",
   "main": "dist/caravan.js",
   "scripts": {
     "test": "jasmine",
     "build": "tsc",
-    "postinstall": "tsc"
+    "postinstall": "tsc",
+    "publish": "publish"
   },
   "keywords": [
     "database",
@@ -20,7 +21,9 @@
   },
   "author": "Andrew Kanieski",
   "license": "MIT",
-  "devDependencies": {},
+  "devDependencies": {
+    "publish": "^0.6.0"
+  },
   "dependencies": {
     "@types/fs-extra": "^4.0.2",
     "@types/jasmine": "^2.5.54",
