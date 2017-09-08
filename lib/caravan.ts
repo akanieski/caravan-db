@@ -17,6 +17,7 @@ const optionDefinitions = [
     { name: 'table', alias: 't', type: String, description: '[Optional] Table name for migrations'},
     { name: 'debug', alias: 'd', type: Boolean, description: '[Optional] Debug Mode'},
     { name: 'version', alias: 'v', type: Boolean, description: '[Optional] Version Information'},
+    { name: 'migrationsFolder', alias: 'f', type: Boolean, description: '[Optional] Migrations folder path'},
     { name: 'help', alias: 'h', type: Boolean, description: 'Help'}
 ]
 
@@ -50,7 +51,8 @@ if (!args.connection) {
 
 let options: IMigratorOptions = Object.assign({
     migrationTableName: 'migrations',
-    migrationSchemaName: 'dbo'
+    migrationSchemaName: 'dbo',
+    migrationsFolder: './CustomMigrationsPath'
 }, args);
 
 (async function() {

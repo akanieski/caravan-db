@@ -10,6 +10,7 @@ export class Migration {
     name: string
 }
 export interface IMigratorOptions {
+    migrationsFolder: string
     migrationTableName: string
     migrationSchemaName: string
     connection: string

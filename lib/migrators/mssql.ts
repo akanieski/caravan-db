@@ -16,13 +16,13 @@ export class MsSqlMigrator implements IMigrator {
     }
 
     async migrate(): Promise<boolean> {
-        if (!fs.existsSync('./migrations')) {
+        if (!fs.existsSync(this.options.migrationsFolder)) {
             throw new Error('Migrations folder not found!')
         }
 
         let appliedMigrationsSql = `select * from [${this.options.migrationSchemaName}].[${this.options.migrationTableName}]`
         let appliedMigrations = await this.pool.request().query<Migration>(appliedMigrationsSql)
-        let migrationFiles = await fs.readdir('./migrations')
+        let migrationFiles = await fs.readdir(this.options.migrationsFolder)
 
         for (let file of migrationFiles) {
             let state = 'Already Applied'
